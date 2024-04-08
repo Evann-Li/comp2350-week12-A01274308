@@ -1,14 +1,14 @@
-const MongoClient = require("mongodb").MongoClient;
+const MongoClient = require("mongoose")
 
-const is_heroku = process.env.IS_HEROKU || false;
+const is_render = process.env.IS_RENDER || false;
 
 
-const herokuURI = "mongodb://localhost/?authSource=admin&retryWrites=true&w=majority;"
+const renderURI = "mongodb+srv://theMongoAdmin:accidentalLoginSteps@cluster0.hwmliaf.mongodb.net/ "+lab_example+"?retryWrites=true&w=majority"
 
-const localURI = "mongodb://localhost/?authSource=admin&retryWrites=true&w=majority;"
+const localURI = "mongodb://localhost/"+lab_example+"?authSource=admin&retryWrites=true" 
 
-if (is_heroku) {
-	var database = new MongoClient(herokuURI, {useNewUrlParser: true, useUnifiedTopology: true});
+if (is_render) {
+	var database = new MongoClient(renderURI, {useNewUrlParser: true, useUnifiedTopology: true});
 }
 else {
 	var database = new MongoClient(localURI, {useNewUrlParser: true, useUnifiedTopology: true});
